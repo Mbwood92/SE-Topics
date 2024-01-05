@@ -1,0 +1,269 @@
+1. 
+
+function factorial(x) {
+  
+  if (x === 0) {
+    return 1;
+  }
+
+  
+  return x * factorial(x - 1);
+}
+
+
+console.log(factorial(5));
+
+2. 
+var gcd = function(a, b) {
+   
+    if (!b) {
+        return a;
+    }
+
+    
+    return gcd(b, a % b);
+};
+
+
+console.log(gcd(2154, 458)); 
+
+3.
+var range = function(start_num, end_num) 
+{
+  
+ 
+  if (end_num - start_num === 2) 
+  {
+    return [start_num + 1];
+  } 
+  else 
+  {
+   
+    var list = range(start_num, end_num - 1);
+    list.push(end_num - 1);
+    return list;
+  }
+};
+
+
+
+4.
+var array_sum = function(my_array) {
+ 
+  if (my_array.length === 1) {
+    return my_array[0];
+  }
+  else {
+  
+    return my_array.pop() + array_sum(my_array);
+  }
+};
+
+
+console.log(array_sum([1, 2, 3, 4, 5, 6])); 
+
+5. 
+var exponent = function(a, n) {
+ 
+  if (n === 0) {
+    return 1;
+  } else {
+   
+    return a * exponent(a, n - 1);
+  }
+};
+
+
+console.log(exponent(4, 2)); 
+
+6. 
+var fibonacci_series = function (n) {
+
+  if (n <= 1) {
+    return [0, 1];
+  } else {
+   
+    var s = fibonacci_series(n - 1);
+   
+    s.push(s[s.length - 1] + s[s.length - 2]);
+    
+    return s.slice(0, n);
+  }
+};
+
+console.log(fibonacci_series(8));
+
+7.
+function is_even_recursion(number) {
+ 
+  if (number < 0) {
+    number = Math.abs(number);
+  }
+if (number === 0) {
+    return true;
+  }
+if (number === 1) {
+    return false;
+  } else {
+  
+    return is_even_recursion(number);
+  }
+}
+console.log(is_even_recursion(234)); 
+console.log(is_even_recursion(-45)); 
+console.log(is_even_recursion(65));  
+
+8. 
+Array.prototype.br_search = function (target) {
+
+  var half = parseInt(this.length / 2);
+  
+ if (target === this[half]) {
+    return half;
+  }
+  if (target > this[half]) {
+    return half + this.slice(half, this.length).br_search(target);
+  } else {
+    return this.slice(0, half).br_search(target);
+  }
+};
+
+
+var l = [0, 1, 2, 3, 4, 5, 6];
+console.log(l.br_search(5)); 
+
+9. 
+Array.prototype.merge_Sort = function () {
+  if (this.length <= 1) {
+    return this;
+  }
+  var half = parseInt(this.length / 2);
+  var left = this.slice(0, half).merge_Sort();
+  var right = this.slice(half, this.length).merge_Sort();
+  var merge = function (left, right) {
+    var mergedArray = [];
+
+    while (left.length > 0 && right.length > 0) {
+      
+      mergedArray.push((left[0] <= right[0]) ? left.shift() : right.shift());
+    }
+    return mergedArray.concat(left).concat(right);
+  };
+  return merge(left, right);
+};
+
+var inputArray = [34, 7, 23, 32, 5, 62];
+var sortedArray = inputArray.merge_Sort();
+
+console.log(sortedArray); 
+
+10. 
+const test = (text) => {
+ 
+  if (typeof text !== 'string') {
+    return 'String should not be empty!';
+  }
+  if (text.length <= 1) {
+    return true;
+  }
+  if (text[0] !== text[text.length - 1]) {
+    return false;
+  } else {
+    return test(text.slice(1, text.length - 1));
+  }
+};
+
+console.log(test("madam")); 
+console.log(test("abdb"));  
+console.log(test("ab"));    
+console.log(test("a"));    
+
+11. 
+const binaryToDecimal = (binaryString, index = 0) => {
+  
+  if (index === binaryString.length) {
+    return 0;
+  }
+
+  
+  const currentDigit = parseInt(binaryString[index]);
+  const restDecimal = binaryToDecimal(binaryString, index + 1);
+  const currentDecimal = currentDigit * Math.pow(2, binaryString.length - index - 1);
+return currentDecimal + restDecimal;
+};
+
+console.log(binaryToDecimal("1")); 
+console.log(binaryToDecimal("0")); 
+console.log(binaryToDecimal("10"));  
+console.log(binaryToDecimal("101")); 
+
+12. 
+const binarySearch = (arr, target, start = 0, end = arr.length - 1) => {
+  
+  if (start > end) {
+    return -1;
+  }
+
+  const mid = Math.floor((start + end) / 2);
+  // Check if target is at the middle
+  if (arr[mid] === target) {
+    return mid;
+  }
+  if (arr[mid] > target) {
+    return binarySearch(arr, target, start, mid - 1);
+  }
+  return binarySearch(arr, target, mid + 1, end);
+};
+
+const sortedArray1 = [1, 2, 3, 5, 6, 7, 10, 11, 14, 15, 17, 19, 20, 22, 23]
+const target1 = 6;
+const sortedArray2 = [1, 2, 3, 5, 6, 7, 10, 11, 14, 15, 17, 19, 20, 22, 23]
+const target2 = -1;
+console.log(`Index of ${target1}: ${binarySearch(sortedArray1, target1)}`);
+console.log(`Index of ${target2}: ${binarySearch(sortedArray2, target2)}`); 
+
+13. 
+const letterCombinations = (digits) => {
+  const length = digits?.length; // Get the length of the input digits
+  const result = []; // Initialize an array to store the combinations
+
+  if (!length) {
+    return result;
+  }
+  const digitMap = {
+    1: 'abc',
+    2: 'def',
+    3: 'ghi',
+    4: 'jkl',
+    5: 'mno',
+    6: 'pqr',
+    7: 'stu',
+    8: 'vwx',
+    9: 'yz',
+  };
+
+  const generateCombinations = (index, combination) => {
+    let letter;
+    let letterIndex;
+
+    if (index >= length) {
+      result.push(combination);
+      return;
+    }
+    const digit = digitMap[digits[index]];
+
+    letterIndex = 0;
+    while ((letter = digit[letterIndex++])) {
+      generateCombinations(index + 1, combination + letter);
+    }
+  };
+
+
+  generateCombinations(0, '');
+
+ 
+  return result;
+};
+
+console.log(letterCombinations("12")); 
+console.log(letterCombinations("9"));  
