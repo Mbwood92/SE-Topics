@@ -1,0 +1,18 @@
+Recursion:
+1. A base case provides a termination condition, allowing the recursion to stop when a certain condition is met. A recursive function will continue calling itself indefinitely, leading to a stack overflow without a base case.
+2.It allows you to avoid redundant computations and significantly improves the efficiency of recursive algorithms. 
+3.
+-Create a regular function with a base case that can be reached with its parameters.
+-Pass arguments into the function that immediately trigger the base case.
+-Pass the next arguments that trigger the recursive call just once.
+
+Linked Lists: 
+1.Linked lists don't require contiguous memory allocation, allowing for efficient insertions and deletions at any point.
+2.No. Adding a node involves updating pointers to maintain the connections between nodes.
+3. You cannot access any elements in a linked list directly. We must traverse from the head node to the last node. 
+
+Testing:
+1.Tests are designed to test single units of code in isolation. They are quick and easy to create, and help find and fix bugs early in the development cycle.
+2. Automated testing is the implementation of an automation tool to execute test cases. 
+3. What is TDD? “Test-driven development” refers to a style of programming in which three activities are tightly interwoven: coding, testing (in the form of writing unit tests), and design (in the form of refactoring).
+
